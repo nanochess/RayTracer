@@ -35,17 +35,17 @@ com_file:       equ 0
         org 0x7c00              ; Start address for boot sector
     %endif
 
-        mov ax,0x0013
-        int 0x10
+        mov ax,0x0013		; Video mode 320x200x256 colors
+        int 0x10		; Call BIOS.
 
-        sub sp,total
-        mov bp,sp
+        sub sp,total		; Make space for internal variables.
+        mov bp,sp		; Use BP to refer them.
 
-        mov ax,0xa000
+        mov ax,0xa000		; Point to video RAM.
         mov es,ax
 
-	finit
-        cld
+	finit			; Reset coprocessor.
+        cld			; Clear direction flag.
 restart:
         fld dword [const_25]    ; Initial viewpoint (z)
         fstp dword [bp+var_a]   ; a = 25.0
