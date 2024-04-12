@@ -1,0 +1,6 @@
+Ray Tracer by @nanochess - 506 bytes of x86
+machine code. Port of the amazing Ray Tracer
+in Atari 8-bit BASIC by D. Scott Williamson,
+and originally made for BBC micro by
+@coprolite9000.
+https://github.com/nanochess/RayTracer
