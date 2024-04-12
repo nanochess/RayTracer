@@ -31,23 +31,25 @@ com_file:       equ 0
 
     %if com_file
         org 0x0100              ; Start address for COM file
+        mov al,0x13		; Video mode 320x200x256 colors
     %else
         org 0x7c00              ; Start address for boot sector
+        mov ax,0x0013		; Video mode 320x200x256 colors
     %endif
 
-        mov ax,0x0013		; Video mode 320x200x256 colors
         int 0x10		; Call BIOS.
 
-        sub sp,total		; Make space for internal variables.
-        mov bp,sp		; Use BP to refer them.
+        enter total-2,0		; Make space for internal variables,
+        			; and use BP to refer them.
 
-        mov ax,0xa000		; Point to video RAM.
-        mov es,ax
+        push 0xa000		; Point to video RAM.
+        pop es
 
-	finit			; Reset coprocessor.
+	fninit			; Reset coprocessor.
         cld			; Clear direction flag.
+	mov si, const_2
 restart:
-        fld dword [const_25]    ; Initial viewpoint (z)
+        fld dword [si+const_25-const_2]    ; Initial viewpoint (z)
         fstp dword [bp+var_a]   ; a = 25.0
 e0:
         xor di,di		; Pixel pointer.
@@ -62,13 +64,13 @@ e2:
         fst dword [bp+var_z]
 
         fsubp                   ; y = -a / 25
-        fdiv dword [const_25]
+        fdiv dword [si+const_25-const_2]
         fstp dword [bp+var_y]
 
         fld1
 
         fild word [bp+var_m]	; The X-coordinate defines the current sphere.
-        fsub dword [const_80_5]
+        fsub dword [si+const_80_5-const_2]
         fldz
         fcomip
         fld1			; One sphere at 1.
@@ -78,13 +80,13 @@ e2:
 e3:
         fstp dword [bp+var_i]
 
-        fdiv dword [const_80_1_3]
+        fdiv dword [si+const_80_1_3-const_2]
         fst dword [bp+var_u]	; X-direction of ray.
         fmul st0
 
         fild word [bp+var_n]
-        fsub dword [const_80_5]
-        fdiv dword [const_80_1_3]
+        fsub dword [si+const_80_5-const_2]
+        fdiv dword [si+const_80_1_3-const_2]
         fst dword [bp+var_v]	; Y-direction of ray.
         fmul st0
 
@@ -159,7 +161,7 @@ e4:
 
         call sphere
 
-        fmul dword [const_2]
+        fmul dword [si]
         fst dword [bp+var_p]
 
         fmul dword [bp+var_e]	; Update ray direction.
@@ -190,7 +192,7 @@ e5:
         jbe e6
         fstp st0
         fld dword [bp+var_y]
-        fadd dword [const_2]
+        fadd dword [si]
         fdiv dword [bp+var_v]
         fst dword [bp+var_p]	; Perspective correction.
 
@@ -204,20 +206,20 @@ e5:
         faddp
         fst dword [bp+var_s]
 
-        fdiv dword [const_2]	; Modulus 2.
+        fdiv dword [si]	; Modulus 2.
         frndint
-        fmul dword [const_2]
+        fmul dword [si]
         fsubr dword [bp+var_s]
 
-        fdiv dword [const_2]	; Modulate final result.
-        fadd dword [const__3]
+        fdiv dword [si]	; Modulate final result.
+        fadd dword [si+const__3-const_2]
         fldz
         fsub dword [bp+var_v]
         fmulp
-        fadd dword [const_1_4]  ; Color offset for floor.
+        fadd dword [si+const_1_4-const_2]  ; Color offset for floor.
 e6:
         fsqrt			; Make a curved gradient (like inside of a sphere)
-        fmul dword [const_25]	; Spread over 25 pixel values.
+        fmul dword [si+const_25-const_2]	; Spread over 25 pixel values.
         fistp word [bp+pixel]	; Convert to integer.
 
 ;        mov ax,199		; Not necessary as DI contains the pixel pointer.
@@ -237,9 +239,9 @@ e6:
         jns e1			; Continue if it is still positive.
 
         fld dword [bp+var_a]	; Move viewing point.
-        fsub dword [const___1]
+        fsub dword [si+const___1-const_2]
         fst dword [bp+var_a]
-        fadd dword [const_2]
+        fadd dword [si]
         fldz
         fcomip			; Reached the limit?
         fstp st0
