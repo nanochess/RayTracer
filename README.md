@@ -8,7 +8,7 @@ https://github.com/nanochess
 
 ### What is this?
 
-This is a port of the amazing Ray Tracer in Atari 8-bit BASIC by D. Scott Williamson. You can see it at [https://bunsen.itch.io/raytrace-movie-atari-8bit-by-d-scott-williamson](https://bunsen.itch.io/raytrace-movie-atari-8bit-by-d-scott-williamson)
+This is a port of the amazing Ray Tracer in Atari 8-bit BASIC by D. Scott Williamson. You can see it at [https://bunsen.itch.io/raytrace-movie-atari-8bit-by-d-scott-williamson](https://bunsen.itch.io/raytrace-movie-atari-8bit-by-d-scott-williamson) in turn based on a static BBC micro version by @coprolite9000 [https://bbcmic.ro/?t=9ctpk](https://bbcmic.ro/?t=9ctpk)
 
 I asked him for permission to make a port to a boot sector, and here it is.
 
