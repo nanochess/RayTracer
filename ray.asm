@@ -39,7 +39,7 @@ com_file:       equ 0
 
         int 0x10		; Call BIOS.
 
-        enter total-2,0		; Make space for internal variables,
+        enter total,0		; Make space for internal variables,
         			; and use BP to refer them.
 
         push 0xa000		; Point to video RAM.
@@ -296,24 +296,24 @@ const_1_4:      dd 1.4
 	;
 	; Variables are kept on the stack to make instructions shorter.
 	;
-var_n:  equ base+$02    ; Integer
-var_m:  equ base+$04    ; Integer
-pixel:  equ base+$06    ; Integer
-var_u:  equ base+$08    ; u - Ray direction (normalized)
-var_v:  equ base+$0c    ; v - Ray direction (normalized)
-var_w:  equ base+$10    ; w - Ray direction (normalized)
-var_x:  equ base+$14    ; x - Origin of ray
-var_y:  equ base+$18    ; y - Origin of ray
-var_z:  equ base+$1c    ; z - Origin of ray
-var_e:  equ base+$20    ; e - Position of sphere
-var_f:  equ base+$24    ; f - Position of sphere
-var_g:  equ base+$28    ; g - Position of sphere
-var_p:  equ base+$2c    ; Float
-var_d:  equ base+$30    ; Float
-var_t:  equ base+$34    ; Float
-var_i:  equ base+$38    ; Float
-var_a:  equ base+$3c    ; Float
-var_s:  equ base+$40    ; Float
+var_n:  equ -$42    ; Integer
+var_m:  equ -$40    ; Integer
+pixel:  equ -$3e    ; Integer
+var_u:  equ -$3c    ; u - Ray direction (normalized)
+var_v:  equ -$38    ; v - Ray direction (normalized)
+var_w:  equ -$34    ; w - Ray direction (normalized)
+var_x:  equ -$30    ; x - Origin of ray
+var_y:  equ -$1c    ; y - Origin of ray
+var_z:  equ -$28    ; z - Origin of ray
+var_e:  equ -$24    ; e - Position of sphere
+var_f:  equ -$20    ; f - Position of sphere
+var_g:  equ -$1c    ; g - Position of sphere
+var_p:  equ -$18    ; Float
+var_d:  equ -$14    ; Float
+var_t:  equ -$10    ; Float
+var_i:  equ -$0c    ; Float
+var_a:  equ -$08    ; Float
+var_s:  equ -$04    ; Float
 
 total:  equ base+$44
 
