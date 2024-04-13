@@ -35,6 +35,10 @@ Because DOSBox-X runs very slowly, I further tested with VirtualBox over Windows
 
 ![Ray tracer in a boot sector](RayTracer.png)
 
+## Acknowledgments
+
+Thanks to Peter Ferrie for helping me to save 23 bytes (my original program was 506 bytes, now it is 483 bytes).
+
 ## More on this?
 
 Do you want to learn 8086/8088 assembler? Get my books Programming Boot Sector Games containing an 8086/8088 crash course! Also available More Boot Sector Games. Now available from Lulu and Amazon!
