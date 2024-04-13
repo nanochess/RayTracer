@@ -10,7 +10,7 @@ https://github.com/nanochess
 
 This is a port of the amazing Ray Tracer in Atari 8-bit BASIC by D. Scott Williamson. You can see it at [https://bunsen.itch.io/raytrace-movie-atari-8bit-by-d-scott-williamson](https://bunsen.itch.io/raytrace-movie-atari-8bit-by-d-scott-williamson)
 
-This was based on a static BBC micro version by [@coprolite9000](https://mastodon.social/@coprolite9000@mastodon.me.uk) [https://bbcmic.ro/?t=9ctpk](https://bbcmic.ro/?t=9ctpk) that was based on [@kweepa](https://twitter.com/Kweepa) original one [whole X thread](https://x.com/bbcmicrobot/status/1322988586828849152), however at this point it looks like the program cannot be decoded back.
+This was based on a static BBC micro version by [@coprolite9000](https://mastodon.social/@coprolite9000@mastodon.me.uk) (see [https://bbcmic.ro/?t=9ctpk](https://bbcmic.ro/?t=9ctpk)) that was based on [@kweepa](https://twitter.com/Kweepa)'s original one (see [whole X thread](https://x.com/bbcmicrobot/status/1322988586828849152)), however at this point it looks like the program cannot be decoded back.
 
 I asked Williamson for permission to make a port to a boot sector, and here it is. I was running around 590 bytes until I found a duplicated calculation that could be made into a subroutine. The code isn't exactly the same because I changed some constants to adapt it, and also collapsed some to save bytes. Anyway, I'm pretty happy I finally found good use for the VGA palette!
 
