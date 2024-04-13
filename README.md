@@ -18,6 +18,8 @@ If you are going to run it in real hardware it requires a minimum of a Pentium P
 
 One of the biggest surprises is how so fast are modern computers so technically the animation is real-time in my Macbook Air running the ray tracer in Windows XP under VirtualBox. You can see it on [Youtube](https://www.youtube.com/watch?v=AZdzECF2Huw).
 
+![Ray tracer in a boot sector animation](RayTracer_animated.gif)
+
 ### How to use it.
 
 If you want to assemble it, you must download the Netwide Assembler (NASM) from www.nasm.us
@@ -38,6 +40,8 @@ Because DOSBox-X runs very slowly, I further tested with VirtualBox over Windows
 ## Acknowledgments
 
 Thanks to Peter Ferrie for helping me to save 23 bytes (my original program was 506 bytes, now it is 483 bytes).
+
+Thanks to birdie-github for contributing the animated GIF of the ray tracer.
 
 ## More on this?
 
