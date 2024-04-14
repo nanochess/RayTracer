@@ -27,7 +27,7 @@
 com_file:       equ 0
     %endif
 
-    %if com_file
+    %ifdef com_file
         org 0x0100              ; Start address for COM file
         mov al,0x13		; Video mode 320x200x256 colors
     %else
@@ -251,7 +251,11 @@ e6:
 
         mov ax,0x0002		; Back to text mode.
         int 0x10
+    %ifdef com_file
         int 0x20		; Exit.
+    %else
+        int 0x18		; Exit.
+    %endif
 
 sphere:
         fld dword [bp+var_x]	; Origin of ray.
@@ -285,7 +289,7 @@ const__3:       dd 0.3
 
 const_1_4:      dd 1.4
 
-    %if com_file
+    %ifdef com_file
     %else
         times 510-($-$$) db 0x4f
         db 0x55,0xaa            ; Make it a bootable sector
