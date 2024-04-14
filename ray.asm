@@ -251,7 +251,11 @@ e6:
 
         mov ax,0x0002		; Back to text mode.
         int 0x10
+    %if com_file
         int 0x20		; Exit.
+    %else
+        int 0x19		; Reboot.
+    %endif
 
 sphere:
         fld dword [bp+var_x]	; Origin of ray.
