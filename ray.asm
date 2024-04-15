@@ -188,10 +188,9 @@ e5:
         fldz
         fcomip          ; Remove second operand.
         jbe e6
-        fstp st0
         fld dword [bp+var_y]
         fadd dword [si]
-        fdiv dword [bp+var_v]
+        fdivrp
         fst dword [bp+var_p]	; Perspective correction.
 
         fmul dword [bp+var_u]	; Adjust coordinates.
@@ -199,7 +198,8 @@ e5:
         frndint
         fld dword [bp+var_w]
         fmul dword [bp+var_p]
-        fsubr dword [bp+var_z]
+        fadd dword [bp+var_z]
+	fadd dword [bp+var_a]	; Moving floor.
         frndint
         faddp
         fst dword [bp+var_s]
@@ -270,7 +270,7 @@ sphere:
 
         faddp
 
-        fld dword [bp+var_z]
+        fld dword [bp+var_z]	; Origin of ray.
         fst dword [bp+var_g]
         fmul dword [bp+var_w]
 
