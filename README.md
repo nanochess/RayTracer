@@ -29,9 +29,20 @@ Use this command line:
     nasm -f bin ray.asm -Dcom_file=1 -o ray.com
     nasm -f bin ray.asm -Dcom_file=0 -o ray.img
 
-Tested with VirtualBox for macOS running Windows XP and also executing directly the bootsector. It probably works with QEMU:
+Tested with VirtualBox for macOS running Windows XP and also executing directly the bootsector. For QEMU, recommended run with KVM (Linux) or Hyper-V (Windows) accelerator for better performance:
 
-    qemu-system-x86_64 -fda ray.img
+Run with KVM:
+
+    qemu-system-x86_64 -machine accel=kvm ray.img
+
+Run with Hyper-V:
+
+    qemu-system-x86_64 -machine accel=whpx ray.img
+
+
+Run without accelerator (TCG):
+
+    qemu-system-x86_64 ray.img
 
 Because DOSBox-X runs very slowly, I further tested with VirtualBox over Windows 11 (Asus TUF F17), created a Windows XP 32-bit machine (you don't need to install Windows nor a hard disk image), in Configuration/Storage in the bottom there is a icon saying "Add controller", choose I82078 (floppy), then click "Add floppy drive", and select the boot sector as image (ray.img).
 
